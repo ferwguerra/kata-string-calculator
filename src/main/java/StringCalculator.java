@@ -17,10 +17,14 @@ public class StringCalculator {
         String[] arrayNumbers = numbers.split(separators);
         for (String number : arrayNumbers) {
             int numberInt = Integer.valueOf(number);
+
             if (numberInt < 0) {
                 negatives.add(numberInt);
             }
-            result += numberInt;
+
+            if (numberInt <= 1000) {
+                result += numberInt;
+            }
         }
 
         validateNegatives(negatives);

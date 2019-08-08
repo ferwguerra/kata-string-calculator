@@ -60,4 +60,15 @@ public class StringCalculatorShould {
     public void throw_exception_with_negatives() {
         stringCalculator.add("1,-2,-3");
     }
+
+    @Test
+    public void be_6_when_send_1_and_2_and_3_and_1001_because_ignore_bigger_than_1000() {
+        assertEquals(6, stringCalculator.add("1,2,3,1001"));
+    }
+
+    @Test
+    public void be_1006_when_send_1_and_2_and_3_and_1000() {
+        assertEquals(1006, stringCalculator.add("1,2,3,1000"));
+    }
+
 }

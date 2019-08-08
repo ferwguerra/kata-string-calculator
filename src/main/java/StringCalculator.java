@@ -4,6 +4,7 @@ import java.util.List;
 public class StringCalculator {
 
     private String separators = ",|\\n";
+    private final static String SPECIAL_CHARS = "*";
 
     public int add(String numbers) {
         int result = 0;
@@ -34,7 +35,7 @@ public class StringCalculator {
     }
 
     private String cleanSeparatorsFromNumbers(String numbers) {
-        if(numbers.startsWith("//")) {
+        if (numbers.startsWith("//")) {
             return numbers.substring(numbers.indexOf("\n") + 1);
         }
         return numbers;
@@ -43,7 +44,11 @@ public class StringCalculator {
 
     private String calculateCustomSeparators(String numbers) {
         if (numbers.startsWith("//")) {
-            return "|" + numbers.substring(2, 3);
+            String customSeparator = numbers.substring(2, 3);
+            if(SPECIAL_CHARS.contains(customSeparator)) {
+                customSeparator = "\\" + customSeparator;
+            }
+            return "|" + customSeparator;
         }
         return "";
     }

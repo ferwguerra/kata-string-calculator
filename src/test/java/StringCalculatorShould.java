@@ -61,5 +61,9 @@ public class StringCalculatorShould {
         assertEquals(6, stringCalculator.add("1,2,3,1001"));
     }
 
+    @Test
+    public void be_28_with_special_separator() {
+        assertEquals(28, stringCalculator.add("//*\n1*2*3*4*5*6*7"));
+    }
 
 }

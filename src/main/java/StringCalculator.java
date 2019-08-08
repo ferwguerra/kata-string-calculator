@@ -12,7 +12,8 @@ public class StringCalculator {
         }
 
         List<Integer> negatives = new ArrayList<Integer>();
-        numbers = calculateAndRemoveCustomSeparators(numbers);
+        separators = separators + calculateCustomSeparators(numbers);
+        numbers = cleanSeparatorsFromNumbers(numbers);
 
         String[] arrayNumbers = numbers.split(separators);
         for (String number : arrayNumbers) {
@@ -32,6 +33,21 @@ public class StringCalculator {
         return result;
     }
 
+    private String cleanSeparatorsFromNumbers(String numbers) {
+        if(numbers.startsWith("//")) {
+            return numbers.substring(numbers.indexOf("\n") + 1);
+        }
+        return numbers;
+
+    }
+
+    private String calculateCustomSeparators(String numbers) {
+        if (numbers.startsWith("//")) {
+            return "|" + numbers.substring(2, 3);
+        }
+        return "";
+    }
+
     private void validateNegatives(List<Integer> negatives) {
         if (!negatives.isEmpty()) {
             StringBuffer stringBuffer = new StringBuffer("Error! Negatives not allowed: ");
@@ -44,16 +60,4 @@ public class StringCalculator {
         }
     }
 
-    private String calculateAndRemoveCustomSeparators(String numbers) {
-        if (numbers.startsWith("//")) {
-            String customSeparator = numbers.substring(2, 3);
-
-            separators = separators.concat("|");
-            separators = separators.concat(customSeparator);
-
-            numbers = numbers.substring(4);
-        }
-
-        return numbers;
-    }
 }

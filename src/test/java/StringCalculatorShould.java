@@ -51,11 +51,6 @@ public class StringCalculatorShould {
         assertEquals(28, stringCalculator.add("//;\n1;2;3;4;5;6;7"));
     }
 
-    @Test
-    public void be_28_with_another_custom_separator() {
-        assertEquals(28, stringCalculator.add("//ª\n1ª2ª3ª4ª5ª6ª7"));
-    }
-
     @Test(expected = IllegalArgumentException.class)
     public void throw_exception_with_negatives() {
         stringCalculator.add("1,-2,-3");
@@ -66,9 +61,5 @@ public class StringCalculatorShould {
         assertEquals(6, stringCalculator.add("1,2,3,1001"));
     }
 
-    @Test
-    public void be_1006_when_send_1_and_2_and_3_and_1000() {
-        assertEquals(1006, stringCalculator.add("1,2,3,1000"));
-    }
 
 }

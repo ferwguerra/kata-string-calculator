@@ -14,6 +14,7 @@ public class StringCalculator {
 
         List<Integer> negatives = new ArrayList<Integer>();
         separators = separators + calculateCustomSeparators(numbers);
+
         numbers = cleanSeparatorsFromNumbers(numbers);
 
         String[] arrayNumbers = numbers.split(separators);
@@ -44,11 +45,20 @@ public class StringCalculator {
 
     private String calculateCustomSeparators(String numbers) {
         if (numbers.startsWith("//")) {
-            String customSeparator = numbers.substring(2, 3);
-            if(SPECIAL_CHARS.contains(customSeparator)) {
-                customSeparator = "\\" + customSeparator;
+            String customSeparator;
+            if (numbers.contains("[")) {
+                customSeparator = numbers.substring(numbers.indexOf("[") + 1, numbers.indexOf("]"));
+                if (customSeparator.contains(SPECIAL_CHARS)) {
+                    customSeparator = customSeparator.replaceAll("\\*", "\\\\\\*");
+                }
+            } else {
+                customSeparator = numbers.substring(2, 3);
+                if (SPECIAL_CHARS.contains(customSeparator)) {
+                    customSeparator = "\\" + customSeparator;
+                }
             }
             return "|" + customSeparator;
+
         }
         return "";
     }

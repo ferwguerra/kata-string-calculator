@@ -66,4 +66,9 @@ public class StringCalculatorShould {
         assertEquals(28, stringCalculator.add("//*\n1*2*3*4*5*6*7"));
     }
 
+    @Test
+    public void be_28_with_arbitrary_length_separators() {
+        assertEquals(28, stringCalculator.add("//[***]\n1***2***3***4***5***6***7"));
+    }
+
 }

@@ -43,4 +43,9 @@ public class StringCalculatorShould {
     public void be_28_when_send_1_to_7_with_new_separator() {
         Assert.assertEquals(28, stringCalculator.add("1\n2,3\n4,5,6\n7"));
     }
+
+    @Test
+    public void be_28_with_custom_separator() {
+        Assert.assertEquals(28, stringCalculator.add("//;\n1;2;3;4;5;6;7"));
+    }
 }

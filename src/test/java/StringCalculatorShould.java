@@ -1,4 +1,3 @@
-import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -14,11 +13,6 @@ public class StringCalculatorShould {
     @Test
     public void be_4_when_send_just_one_number_and_it_is_4() {
         assertEquals(4, stringCalculator.add("4"));
-    }
-
-    @Test
-    public void be_6_when_send_just_one_number_and_it_is_6() {
-        assertEquals(6, stringCalculator.add("6"));
     }
 
     @Test
@@ -69,6 +63,16 @@ public class StringCalculatorShould {
     @Test
     public void be_28_with_arbitrary_length_separators() {
         assertEquals(28, stringCalculator.add("//[***]\n1***2***3***4***5***6***7"));
+    }
+
+    @Test
+    public void be_6_with_multiple_single_length_separators() {
+        assertEquals(6, stringCalculator.add("//[*][%]\n1*2%3"));
+    }
+
+    @Test
+    public void be_6_with_multiple_longer_length_separators() {
+        assertEquals(6, stringCalculator.add("//[foo][bar]\n1foo2bar3"));
     }
 
 }
